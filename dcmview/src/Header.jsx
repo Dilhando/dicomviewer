@@ -17,7 +17,7 @@ function Header() {
     <section className="jumbotron text-center">
       <div className="container">
         <h2>List of studies</h2>
-        <p className="lead text-muted">Select a study you want to explore...</p>
+        <p className="lead text-muted">Click on files to explore...</p>
       </div>
     </section>
     </>

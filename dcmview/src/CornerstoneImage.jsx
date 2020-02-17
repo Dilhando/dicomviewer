@@ -4,7 +4,7 @@ import * as cornerstoneWADOImageLoader from "cornerstone-wado-image-loader";
 import * as dicomParser from "dicom-parser";
 import "./App.css";
 
-function CornerstoneImage({ dicom }) {
+function CornerstoneImage({ dicom, getSerie }) {
     const element = React.createRef();
     const { fileName, study, patientName } = dicom;
     function setImage() {
@@ -20,14 +20,14 @@ function CornerstoneImage({ dicom }) {
         <div className="col-md-4">
             <div className="card mb-4 shadow-sm">
                 <div ref={element} className="dicomImage" 
-                    preserveAspectRatio="xMidYMid slice"
+                    preserveAspectRatio="xMidYMid slice" onClick={() => getSerie()}
                     focusable="false">
                 </div>
                 <div className="card-body">
                     <p id="dicomText" className="card-text">Patient: {patientName}<br />Study: {study}</p>
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="btn-group">
-                            <button type="button" className="btn btn-sm btn-outline-secondary">View</button>
+                            <button type="button" className="btn btn-sm btn-outline-secondary" onClick={() => getSerie()}>View</button>
                         </div>
                     </div>
                 </div>
