@@ -2,21 +2,30 @@
     text-align: center;
   }
 
+
+  .buttonBox {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .footix {
+    background-color: rgb(233, 236, 239);
+  }
+
   .titlebox {
     font-family: sans-serif;
-   font-style: italic;
-   text-align: left;
+    font-style: italic;
+    text-align: left;
   }
 
   .jumbotron {
     padding-top: 3rem;
     padding-bottom: 3rem;
     margin-bottom: 0;
-    background-color: #fff;
+    background-color: rgb(233, 236, 239);
   }
   .dicomImage {
-    width: 100%;
-    height: 100%;
     background-color: lightgray;
     position: relative;
     display: inline;
@@ -734,6 +743,7 @@
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
+    margin-bottom: 10px;
   }
   
   .col {
@@ -2656,9 +2666,9 @@
   }
   
   .btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    color: black;
+    background-color: rgb(250, 250, 250);
+    border-color: rgb(230, 230, 230)  ;
   }
   
   .btn-primary:hover {
@@ -2668,9 +2678,10 @@
   }
   
   .btn-primary:focus, .btn-primary.focus {
+    outline: none;
     color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
+    background-color: rgb(140, 140, 140);
+    border-color: rgb(140, 140, 140);
     box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
   }
   
@@ -5341,7 +5352,7 @@
   
   .jumbotron {
     padding: 2rem 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     background-color: #e9ecef;
     border-radius: 0.3rem;
   }
@@ -6852,7 +6863,7 @@
   }
   
   .bg-light {
-    background-color: #f8f9fa !important;
+    background-color: rgb(233, 236, 239) !important;
   }
   
   a.bg-light:hover, a.bg-light:focus,

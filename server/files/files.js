@@ -1,7 +1,6 @@
 const express       = require("express");
 const router        = express.Router();
 
-
 // get request on <server>/files will send the list of files in <server>/files/.
 router.get("/", function (req, res, next) {
     const fs        = require("fs");
@@ -17,27 +16,22 @@ router.get("/", function (req, res, next) {
                     fileList += file + " ";
             });
             fileList.slice(0, fileList.length - 1);
-            res.setHeader("Access-Control-Allow-Origin", "*");
             res.send(fileList);     
         }
     });
 });
 
 // get request on <server>/files/<filename> will send the file to the client.
-router.get("/:name", function (req, res, next) {
+router.get("/:name", (req, res, next) => {
     const fileName = __dirname + "/" + req.params.name;
     const options = {
         headers: {
             "x-timestamp" : Date.now(),
-            "Access-Control-Allow-Origin": "*",
             "x-sent" : true
         }
     }
-    res.sendFile(fileName, options, function(err) {
+    res.sendFile(fileName, options, (err) => {
         if (err) next(err);
-        else {
-            console.log("Sent: ", fileName);
-        }
     });
 });
   

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Study explorer",
+  "name": "View your dicom files in an app",
   "icons": [
     {
       "src": "favicon.ico",
