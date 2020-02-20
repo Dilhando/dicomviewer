@@ -15,6 +15,7 @@ router.get("/", function (req, res, next) {
                 if (fileName.slice(file.length - 4) === ".dcm")
                     fileList += file + " ";
             });
+            res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
             fileList.slice(0, fileList.length - 1);
             res.send(fileList);     
         }
@@ -27,6 +28,7 @@ router.get("/:name", (req, res, next) => {
     const options = {
         headers: {
             "x-timestamp" : Date.now(),
+            "Access-Control-Allow-Origin": "http://localhost:3000",
             "x-sent" : true
         }
     }
