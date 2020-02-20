@@ -27,8 +27,7 @@ function CSImageStack({ dicomList }) {
         currentImageIdIndex: 0,
         imageIds
     }
-    function setImage() {
-        const StackScrollMouseWheelTool = cornerstoneTools.StackScrollMouseWheelTool;    
+    function setImage() {  
         cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
         cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
         cornerstoneTools.external.cornerstone = cornerstone;
@@ -36,8 +35,10 @@ function CSImageStack({ dicomList }) {
         cornerstoneTools.external.Hammer = Hammer;
         cornerstoneTools.init();
         cornerstone.enable(element.current);
-        cornerstoneTools.addTool(StackScrollMouseWheelTool);
+        cornerstoneTools.addTool(cornerstoneTools.RectangleRoiTool);
+        cornerstoneTools.addTool(cornerstoneTools.StackScrollMouseWheelTool);
         cornerstoneTools.setToolActive('StackScrollMouseWheel', { });
+        cornerstoneTools.setToolActive("RectangleRoi", { mouseButtonMask: 1 });
         cornerstone.loadImage(imageIds[0]).then((image) => {
             cornerstone.displayImage(element.current, image);
             cornerstoneTools.addStackStateManager(element.current, ['stack']);
@@ -48,7 +49,7 @@ function CSImageStack({ dicomList }) {
     return (
         <div style={{ textAlign: "center", backgroundColor: "rgb(233, 236, 239)" }}>
             <div style={{ display: "inline-block", position: "relative" }}>
-                <div ref={element} style={{ width: "600px", height: "600px" }}>
+                <div ref={element} style={{ width: "100vw", height: "600px" }}>
                 </div>
             </div>
         </div>

@@ -13,7 +13,7 @@ function ListSeries({ setSeriesMode }) {
           <img src={logo} className="logo" alt="logo"></img>
           Serie explorer
         </div>
-        <Button className="btn-outline-secondary" onClick={setSeriesMode}>Go back</Button>
+        <Button className="btn-outline-secondary" onClick={setSeriesMode}>Studies</Button>
       </div>
     </div>
     <div className="jumbotron text-center">

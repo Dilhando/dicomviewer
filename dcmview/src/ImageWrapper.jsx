@@ -70,7 +70,7 @@ function ImageWrapper({ dicomList, seriesMode, setSeriesMode }) {
                 ? 
                 (singleMode
                     ?
-                    <CSImageSingle dicom={dicomFile} />
+                    <CSImageSingle dicom={dicomFile} viewSerie={() => viewSerie(dicomFile)} />
                     :
                     (dicomInstances[0] && dicomInstances[0].studyType === "CT"
                         ?

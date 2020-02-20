@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import * as cornerstone from "cornerstone-core";
-import * as cornerstoneWADOImageLoader from "cornerstone-wado-image-loader";
-import * as dicomParser from "dicom-parser";
 import { Button, Overlay } from "react-bootstrap";
+import cornerstone from "cornerstone-core";
+import cornerstoneTools from "cornerstone-tools";
+import cornerstoneMath from "cornerstone-math";
+import cornerstoneWADOImageLoader from "cornerstone-wado-image-loader";
+import dicomParser from "dicom-parser";
+import Hammer from "hammerjs";
 import "./App.css";
 
-function CSImageSingle({ dicom }) {
+function CSImageSingle({ dicom, viewSerie }) {
     const { fileName, patientName, studyType, studyDate, studyRef, study, serie, instance } = dicom;
     const [ show, setShow ] = useState(false);
     const element = React.createRef();
@@ -15,6 +18,15 @@ function CSImageSingle({ dicom }) {
         const imageId = "wadouri:" + fileName;
         cornerstoneWADOImageLoader.external.cornerstone = cornerstone;
         cornerstoneWADOImageLoader.external.dicomParser = dicomParser;
+        cornerstoneTools.external.cornerstone = cornerstone;
+        cornerstoneTools.external.cornerstoneMath = cornerstoneMath;
+        cornerstoneTools.external.Hammer = Hammer;
+        cornerstoneTools.init();
+        cornerstone.enable(element.current);
+        cornerstoneTools.addTool(cornerstoneTools.ZoomMouseWheelTool);
+        cornerstoneTools.addTool(cornerstoneTools.ArrowAnnotateTool);
+        cornerstoneTools.setToolActive('ZoomMouseWheel', { mouseButtonMask: 1 });
+        cornerstoneTools.setToolActive("ArrowAnnotate", { mouseButtonMask: 1 });
         cornerstone.enable(element.current);
         cornerstone.loadAndCacheImage(imageId).then((image) => {
         cornerstone.displayImage(element.current, image);
@@ -24,7 +36,7 @@ function CSImageSingle({ dicom }) {
     return (
         <div style={{ textAlign: "center", backgroundColor: "rgb(233, 236, 239)" }}>
             <div style={{ display: "inline-block", position: "relative" }}>
-                <div ref={element} style={{ width: "600px", height: "600px" }}>
+                <div ref={element} style={{ width: "100vw", height: "600px" }}>
                 </div>
                 <div className="buttonBox">
                     <Button className="btn-outline-secondary" focusable="false" ref={target} onClick={() => setShow(!show)}>
@@ -57,8 +69,12 @@ function CSImageSingle({ dicom }) {
                             Serie UID : {serie}<br />
                             Instance UID : {instance}<br />
                         </div>
-                        )}
+                        )}        
                     </Overlay>
+                    <Button className="btn-outline-secondary"
+                        onClick={viewSerie}>
+                        Back to serie
+                    </Button>
                 </div>
             </div>
         </div>
